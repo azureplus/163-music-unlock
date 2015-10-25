@@ -9,8 +9,27 @@
     tools:context="org.chiontang.neteastmusiccracker.MainActivity" >
 
     <TextView
+        android:id="@+id/textView1"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="@string/hello_world" />
+        android:text="网易云音乐版权限制破解工具 使用前请先允许本工具(NetEaseMusicCracker)获得Root权限！" />
+
+    <Button
+        android:id="@+id/button_activate"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentLeft="true"
+        android:layout_below="@id/textView1"
+        android:layout_marginTop="16dp"
+        android:text="启用" />
+
+    <Button
+        android:id="@+id/button_restore"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_toRightOf="@id/button_activate"
+        android:layout_below="@id/textView1"
+        android:layout_marginTop="16dp"
+        android:text="禁用" />
 
 </RelativeLayout>
