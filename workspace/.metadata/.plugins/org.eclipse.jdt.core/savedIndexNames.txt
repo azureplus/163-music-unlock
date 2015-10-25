@@ -1,5 +1,0 @@
-INDEX VERSION 1.127+/home/chiontang/163_music_hacker_android/workspace/.metadata/.plugins/org.eclipse.jdt.core
-451066622.index
-1270315800.index
-4090677924.index
-2090292266.index
