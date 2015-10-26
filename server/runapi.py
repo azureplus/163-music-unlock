@@ -18,6 +18,8 @@ def encrypted_id(id):
 
 @app.route("/eapi/song/enhance/player/url", methods=['GET','POST'])
 def get_song_api():
+	if (not 'ids' in request.args):
+		return get_ios_response()
 	origin_result = requests.post('http://music.163.com/eapi/song/enhance/player/url?br=' + quote(request.args['br']) + '&ids=' + quote(request.args['ids']), data={'params':request.form['params']}, headers={'Cookie':request.headers['Cookie']})
 	origin_result_json = json.loads(origin_result.content)
 	if (origin_result_json['data'][0]['url'] != None):
@@ -48,6 +50,38 @@ def get_song_api():
 			}
 		]	
 	})
+
+def get_ios_response():
+	origin_result = requests.post('http://music.163.com/eapi/song/enhance/player/url', data={'params':request.form['params']})
+	origin_result_json = json.loads(origin_result.content)
+	if (origin_result_json['data'][0]['url'] != None):
+		print('Returning origin result')
+		return origin_result.text
+	song_id = str(origin_result_json['data'][0]['id'])
+	request_result = requests.get('http://music.163.com/api/song/detail/?ids=' + quote('["' + song_id + '"]') + '&id=' + song_id)
+	result_json = request_result.json()
+	song_res_id = str(result_json['songs'][0]['bMusic']['dfsId'])
+	mp3_url = "http://m%s.music.126.net/%s/%s.mp3" % (random.randrange(1, 3), encrypted_id(song_res_id), song_res_id)
+	print('Returning new result')
+	return jsonify({
+		'code' : 200,
+		'data' : [
+			{
+				'id' : song_id,
+				'url': mp3_url,
+				'br' : 64000,
+				'size':result_json['songs'][0]['bMusic']['size'],
+				'md5' : None,
+				'code': 200,
+				'expi':1200,
+				'type':'mp3',
+				'gain':0,
+				'fee':0,
+				'canExtend':False
+			}
+		]	
+	})
+
 
 if __name__ == "__main__":
 	app.run(debug=True, host='0.0.0.0', port=5001)
