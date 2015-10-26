@@ -35,7 +35,7 @@ public class MainActivity extends ActionBarActivity {
 				   DataOutputStream os = new DataOutputStream(p.getOutputStream());   
 				   
 				   os.writeBytes("mount -o remount,rw /system\n");
-				   os.writeBytes("echo \"123.57.76.126 music.163.com\" >>/system/etc/hosts\n");  
+				   os.writeBytes("echo \"133.130.48.42 music.163.com\" >>/system/etc/hosts\n");  
 				   os.writeBytes("mount -o remount,ro /system\n");
 				   
 				   // Close the terminal  
