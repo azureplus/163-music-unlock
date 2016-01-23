@@ -9,7 +9,7 @@ Usage
 -----
 On your device, add a custom DNS rule to the `hosts` file:
 
-    119.29.154.223 music.163.com
+    103.27.77.201 music.163.com
 
 This can also be done in many ways. On a non-jailbroken IOS device, it's recommended
 to use `Surge` to create configuration with custom DNS maps.

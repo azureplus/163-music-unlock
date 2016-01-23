@@ -15,7 +15,7 @@ import android.widget.Toast;
 
 public class MainActivity extends ActionBarActivity {
 
-	String server_ip = "119.29.154.223";
+	String server_ip = "103.27.77.201";
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
