@@ -45,7 +45,7 @@ def get_music_resource(song_id):
 		song_res_id = str(result_json['songs'][0]['hMusic']['dfsId'])
 		file_ext = result_json['songs'][0]['hMusic']['extension']
 		file_size = result_json['songs'][0]['hMusic']['size']
-	else if (result_json['songs'][0]['bMusic'] != None):
+	elif (result_json['songs'][0]['bMusic'] != None):
 		song_res_id = str(result_json['songs'][0]['bMusic']['dfsId'])
 		file_ext = result_json['songs'][0]['bMusic']['extension']
 		file_size = result_json['songs'][0]['bMusic']['size']
