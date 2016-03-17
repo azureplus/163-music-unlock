@@ -41,18 +41,20 @@ def get_ios_response():
 def get_music_resource(song_id):
 	request_result = requests.get('http://music.163.com/api/song/detail/?ids=' + quote('["' + song_id + '"]') + '&id=' + song_id)
 	result_json = request_result.json()
-	if (result_json['songs'][0]['bMusic'] != None):
+	if (result_json['songs'][0]['hMusic'] != None):
+		song_res_id = str(result_json['songs'][0]['hMusic']['dfsId'])
+		file_ext = result_json['songs'][0]['hMusic']['extension']
+		file_size = result_json['songs'][0]['hMusic']['size']
+	else if (result_json['songs'][0]['bMusic'] != None):
 		song_res_id = str(result_json['songs'][0]['bMusic']['dfsId'])
 		file_ext = result_json['songs'][0]['bMusic']['extension']
 		file_size = result_json['songs'][0]['bMusic']['size']
-		mp3_url = "http://m%s.music.126.net/%s/%s.mp3" % (random.randrange(1, 3), encrypted_id(song_res_id), song_res_id)
-
 	else:
 		song_res_id = str(result_json['songs'][0]['audition']['dfsId'])
 		file_ext = result_json['songs'][0]['audition']['extension']
 		file_size = result_json['songs'][0]['audition']['size']
-		mp3_url = "http://m%s.music.126.net/%s/%s.%s" % (random.randrange(1, 3), encrypted_id(song_res_id), song_res_id, file_ext)
 	print('Returning new result')
+	mp3_url = "http://m%s.music.126.net/%s/%s.%s" % (random.randrange(1, 3), encrypted_id(song_res_id), song_res_id, file_ext)
 	return {
 		'code' : 200,
 		'data' : [
